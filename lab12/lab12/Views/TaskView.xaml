@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab12.Views.TaskView">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Title" FontAttributes="Bold" FontSize="Title"/>
+            <Entry FontSize="20" Text="{Binding Title}"></Entry>
+            <Label Text="Description" FontAttributes="Bold" FontSize="Title"/>
+            <Entry FontSize="20" Text="{Binding Description}"></Entry>
+            <StackLayout>
+            <Picker Title="Seleccionar" SelectedItem="{Binding IsCompleted, Mode=TwoWay}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Yes</x:String>
+                        <x:String>No</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            </StackLayout>
+            <Button Text="Save" FontSize="Title" BackgroundColor="DarkSlateGray" Command="{Binding Save}"/>
+            <Button Text="Get" FontSize="Title" BackgroundColor="DarkSlateGray" Command="{Binding Get}"/>
+            <ListView x:Name="tasks" ItemsSource="{Binding Tasks}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <StackLayout>
+                                <Label Text="{Binding Title}"
+                                       FontSize="10"
+                                       HorizontalOptions="FillAndExpand"/>
+                                    
+                                <Label Text="{Binding Description}"
+                                       FontSize="10"
+                                       HorizontalOptions="FillAndExpand"/>
+
+                                <Label Text="{Binding IsCompleted}"
+                                       FontSize="11"
+                                     HorizontalOptions="FillAndExpand"/>
+                                </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
